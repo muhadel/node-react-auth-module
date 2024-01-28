@@ -1,12 +1,13 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
-import { Logger, ValidationPipe } from "@nestjs/common";
+import { HttpException, Logger, ValidationPipe } from "@nestjs/common";
 import helmet from "helmet";
 import * as compression from "compression";
 import { ConfigService } from "@nestjs/config";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import { ConfigKey } from "./config/config";
 import { HttpExceptionFilter } from "./utils/http-exception.filter";
+import rateLimit from "express-rate-limit";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -19,6 +20,18 @@ async function bootstrap() {
   // middlewares
   app.enableCors({ origin: "*" });
   app.setGlobalPrefix(prefix);
+
+  // Rate limiting
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 1000, // limit each IP to 100 requests per windowMs
+    handler: (req, res, next) => {
+      throw new HttpException("Rate limit exceeded", 429); // 429 - Too Many Requests
+    },
+  });
+  app.use(limiter);
+
+  // Security headers
   app.use(helmet());
   app.use(compression());
 
@@ -26,7 +39,7 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: true }));
 
-  // swagger
+  // Swagger
   const options = new DocumentBuilder()
     .setTitle(appName)
     .setDescription("Nest.js Auth Module")
