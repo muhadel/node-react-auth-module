@@ -8,7 +8,7 @@ import { User } from "./types/user";
 export class UsersService {
   private readonly logger = new Logger(UsersService.name);
 
-  constructor(@InjectModel("User") private usersRepository: Model<User>) {}
+  constructor(@InjectModel("User") private readonly usersRepository: Model<User>) {}
 
   /**
    * Creates a new user based on the provided user data.
@@ -16,10 +16,10 @@ export class UsersService {
    * @returns The newly created user.
    * @throws Error if there's an issue creating the user.
    */
-  async create(userData: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<User> {
     try {
-      const newUser = new this.usersRepository(userData);
-      return await newUser.save();
+      const createdUser = await this.usersRepository.create(createUserDto);
+      return createdUser;
     } catch (error) {
       this.logger.error(`Error creating user: ${error.message}`, error.stack);
       throw new Error("Failed to create user.");

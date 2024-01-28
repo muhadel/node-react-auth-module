@@ -13,10 +13,8 @@ export enum Environment {
   Development = "development",
   Staging = "staging",
   Production = "production",
-  Testing = "testing",
+  Testing = "test",
 }
-
-console.log("env-->", process.env.ENV, Environment[process.env.NODE_ENV as keyof typeof Environment]);
 
 const APPConfig = registerAs(ConfigKey.App, () => ({
   env: Environment[process.env.NODE_ENV as keyof typeof Environment] || "development",
