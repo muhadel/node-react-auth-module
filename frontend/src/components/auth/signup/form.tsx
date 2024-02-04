@@ -8,7 +8,6 @@ import { Alert } from "@/components/ui/alert";
 import { useMedia } from "@/hooks/use-media";
 import { Text } from "@/components/ui/text";
 import { Form } from "@/components/ui/form";
-// import { routes } from "@/config/routes";
 import { SignUpSchema, signUpSchema } from "@/utils/validators/signup.schema";
 import { Link } from "react-router-dom";
 import { routes } from "@/utils/config/routes";
@@ -136,7 +135,7 @@ export default function SignUpForm() {
                 }
               />
             </div>
-            <Button isLoading={isFetching} className="w-full" type="submit" size={isMedium ? "lg" : "xl"}>
+            <Button disabled={isFetching} isLoading={isFetching} className="w-full" type="submit" size={isMedium ? "lg" : "xl"}>
               Create Account
             </Button>
           </div>

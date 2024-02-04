@@ -82,7 +82,7 @@ export default function SignInForm() {
               </Link>
             </div>
 
-            <Button isLoading={isFetching} className="w-full" type="submit" size={isMedium ? "lg" : "xl"}>
+            <Button disabled={isFetching} isLoading={isFetching} className="w-full" type="submit" size={isMedium ? "lg" : "xl"}>
               Sign In
             </Button>
           </div>

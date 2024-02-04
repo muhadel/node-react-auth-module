@@ -1,3 +1,1 @@
-'use client';
-
-export { Checkbox } from 'rizzui';
+export { Checkbox } from "rizzui";

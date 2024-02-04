@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { PiHouseLineBold } from "react-icons/pi";
 import SocialItems from "@/components/ui/social-shares";
-
 import { Title } from "@/components/ui/text";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/utils/config/site.config";
