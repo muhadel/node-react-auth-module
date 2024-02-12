@@ -1,6 +1,7 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { axios } from "@/redux/api-service";
 import cookieUtils from "@/utils/cookie";
+import { dotenv } from "@/utils/config";
 import { jwtDecode } from "jwt-decode";
 import { TokenPayload } from "@/types/token-payload";
 import { SignInRequestDto, SignInResponseDto, SignUpRequestDto, SignUpResponseDto } from "@/types/auth-dto";
@@ -11,7 +12,7 @@ export const signUp = createAsyncThunk("AUTH/SIGN_UP", async (args: SignUpReques
     const responseData = response.data as SignUpResponseDto;
 
     // Set the token in cookies after successful sign-up
-    cookieUtils.setCookie(cookieUtils.ACCESS_TOKEN_COOKIE_NAME, responseData.data.token);
+    cookieUtils.setCookie(dotenv.accessTokenCookieName, responseData.data.token);
 
     // Dispatch setCurrentUser after successful sign-up
     thunkAPI.dispatch(setCurrentUser());
@@ -28,7 +29,7 @@ export const signIn = createAsyncThunk("AUTH/SIGN_IN", async (args: SignInReques
     const responseData = response.data as SignInResponseDto;
 
     // Set the token in cookies after successful sign-in
-    cookieUtils.setCookie(cookieUtils.ACCESS_TOKEN_COOKIE_NAME, responseData.data.token);
+    cookieUtils.setCookie(dotenv.accessTokenCookieName, responseData.data.token);
 
     // Dispatch setCurrentUser after successful sign-in
     thunkAPI.dispatch(setCurrentUser());
@@ -42,7 +43,7 @@ export const signIn = createAsyncThunk("AUTH/SIGN_IN", async (args: SignInReques
 export const setCurrentUser = createAsyncThunk("AUTH/SET_CURRENT_USER", async (_, thunkAPI) => {
   try {
     // Get the JWT token from cookies
-    const authToken = cookieUtils.getCookie(cookieUtils.ACCESS_TOKEN_COOKIE_NAME);
+    const authToken = cookieUtils.getCookie(dotenv.accessTokenCookieName);
 
     if (authToken) {
       if (isValidToken(authToken)) {
@@ -79,7 +80,7 @@ const isValidToken = (token: string): boolean => {
 export const signOut = createAsyncThunk("AUTH/SIGN_OUT", async (_, thunkAPI) => {
   try {
     // Delete the JWT token from cookies
-    cookieUtils.removeCookie(cookieUtils.ACCESS_TOKEN_COOKIE_NAME);
+    cookieUtils.removeCookie(dotenv.accessTokenCookieName);
 
     // Dispatch setCurrentUser after successful sign-in
     thunkAPI.dispatch(setCurrentUser());
