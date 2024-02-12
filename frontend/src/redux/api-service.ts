@@ -1,16 +1,13 @@
+import { dotenv } from "@/utils/config";
 import cookieUtils from "@/utils/cookie";
 import Axios from "axios";
 
-const baseURL = `${import.meta.env.VITE_BACKEND_URL}/api`;
-
-export const axios = Axios.create({ baseURL });
+export const axios = Axios.create({ baseURL: `${dotenv.backendUrl}/api` });
 
 // Set token in header if the token is found in the cookies
-axios.interceptors.request.use(function (config) {
-  const authToken = cookieUtils.getCookie(cookieUtils.ACCESS_TOKEN_COOKIE_NAME);
-  if (authToken) {
-    config.headers.Authorization = authToken;
-  }
+axios.interceptors.request.use(function (requestConfig) {
+  const authToken = cookieUtils.getCookie(dotenv.accessTokenCookieName);
+  if (authToken) requestConfig.headers.Authorization = authToken;
 
-  return config;
+  return requestConfig;
 });

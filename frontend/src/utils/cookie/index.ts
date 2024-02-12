@@ -12,7 +12,6 @@ type JsonCookie<T> = {
 };
 
 export type CookieUtils = {
-  ACCESS_TOKEN_COOKIE_NAME: string;
   setCookie: (name: string, value: string, options?: CookieOptions) => void;
   getCookie: (name: string) => string | undefined;
   removeCookie: (name: string, options?: CookieOptions) => void;
@@ -25,8 +24,6 @@ import Cookies from "js-cookie";
 const COOKIE_EXPIRATION_DAYS = 7;
 
 const cookieUtils: CookieUtils = {
-  ACCESS_TOKEN_COOKIE_NAME: "session-token",
-
   setCookie: (name, value, options) => {
     Cookies.set(name, value, { expires: options?.expires || COOKIE_EXPIRATION_DAYS, ...options });
   },
