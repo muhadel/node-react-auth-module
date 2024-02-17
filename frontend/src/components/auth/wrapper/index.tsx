@@ -40,7 +40,7 @@ export default function AuthWrapper({
         <div className={cn("mx-auto w-full max-w-md py-12 md:max-w-lg lg:max-w-xl 2xl:pb-8 2xl:pt-2", className)}>
           <div className="flex flex-col items-center">
             <Link to={"/"} className="mb-7 inline-block max-w-[64px] lg:mb-9">
-              <img src={siteConfig.icon} alt={siteConfig.title} />
+              <img src={siteConfig.icon} alt={siteConfig.title} className="dark:invert" />
             </Link>
             <Title as="h2" className="mb-7 text-center text-[28px] font-bold leading-snug md:text-3xl md:!leading-normal lg:mb-10 lg:text-4xl">
               {title}
@@ -49,12 +49,12 @@ export default function AuthWrapper({
           {isSocialLoginActive && (
             <>
               <div className="flex flex-col gap-4 pb-6 md:flex-row md:gap-6 xl:pb-7">
-                <Button className="h-11 w-full" onClick={() => handleSignIn()}>
-                  <FcGoogle className="me-2 h-4 w-4 shrink-0 " />
+                <Button rounded="pill" variant="outline" className="h-11 w-full" onClick={() => handleSignIn()}>
+                  <FcGoogle className="me-2 h-4 w-4 shrink-0" />
                   <span className="truncate">Sign in with Google</span>
                 </Button>
 
-                <Button className="h-11 w-full bg-[#1778F2] hover:opacity-90 hover:bg-[#1778F2]" onClick={() => handleSignIn()}>
+                <Button rounded="pill" variant="outline" className="h-11 w-full " onClick={() => handleSignIn()}>
                   <BsFacebook className="me-2 h-4 w-4 shrink-0 md:h-5 md:w-5" />
                   <span className="truncate">Sign in with Facebook</span>
                 </Button>

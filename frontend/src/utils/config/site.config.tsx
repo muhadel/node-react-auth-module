@@ -1,18 +1,13 @@
 import logoImg from "@public/vite.svg";
-import { LAYOUT_OPTIONS } from "@/utils/config/enums";
+import { LAYOUT_OPTIONS, MODE_OPTIONS } from "@/utils/config/enums";
 import logoIconImg from "@public/vite.svg";
-
-enum MODE {
-  DARK = "dark",
-  LIGHT = "light"
-}
 
 export const siteConfig = {
   title: "Vite + React + TS",
   description: "Vite + React + TS",
   logo: logoImg,
   icon: logoIconImg,
-  mode: MODE.LIGHT,
+  mode: MODE_OPTIONS.LIGHT,
   layout: LAYOUT_OPTIONS.LAYOUT_1
 };
 

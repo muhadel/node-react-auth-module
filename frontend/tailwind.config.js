@@ -1,14 +1,4 @@
-// /** @type {import('tailwindcss').Config} */
-// export default {
-//   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-//   theme: {
-//     extend: {}
-//   },
-//   plugins: []
-// };
-
 /** @type {import('tailwindcss').Config} */
-const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: [
@@ -16,78 +6,84 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/rizzui/dist/*.{js,ts,jsx,tsx}" // ⚠️ Required this line to compile RizzUI style.
   ],
+  darkMode: ["class", '[data-theme="dark"]'], // ⚠️ Required this line for dark mode implementation
   theme: {
     extend: {
       colors: {
         /*
          * body, modal, drawer background & ring-offset-color
          */
-        background: colors.white,
+        background: "rgb(var(--background) / <alpha-value>)",
 
         /*
          * body text color
          */
-        foreground: colors.gray[600],
+        foreground: "rgb(var(--foreground) / <alpha-value>)",
 
         /*
          * border, default flat bg color for input components, tab & dropdown hover color
          */
-        muted: colors.gray[200],
+        muted: "rgb(var(--muted) / <alpha-value>)",
+
+        /*
+         * disable foreground color
+         */
+        "muted-foreground": "rgb(var(--muted-foreground) / <alpha-value>)",
 
         /*
          * primary colors
          */
         primary: {
-          lighter: colors.gray[200],
-          DEFAULT: colors.gray[800],
-          dark: colors.gray[950],
-          foreground: colors.white
+          lighter: "rgb(var(--primary-lighter) / <alpha-value>)",
+          DEFAULT: "rgb(var(--primary-default) / <alpha-value>)",
+          dark: "rgb(var(--primary-dark) / <alpha-value>)",
+          foreground: "rgb(var(--primary-foreground) / <alpha-value>)"
         },
 
         /*
          * secondary colors
          */
         secondary: {
-          lighter: colors.indigo[200],
-          DEFAULT: colors.indigo[500],
-          dark: colors.indigo[700],
-          foreground: colors.white
+          lighter: "rgb(var(--secondary-lighter) / <alpha-value>)",
+          DEFAULT: "rgb(var(--secondary-default) / <alpha-value>)",
+          dark: "rgb(var(--secondary-dark) / <alpha-value>)",
+          foreground: "rgb(var(--secondary-foreground) / <alpha-value>)"
         },
 
         /*
          * danger colors
          */
         red: {
-          lighter: colors.rose[200],
-          DEFAULT: colors.rose[500],
-          dark: colors.rose[700]
+          lighter: "rgb(var(--red-lighter) / <alpha-value>)",
+          DEFAULT: "rgb(var(--red-default) / <alpha-value>)",
+          dark: "rgb(var(--red-dark) / <alpha-value>)"
         },
 
         /*
          * warning colors
          */
         orange: {
-          lighter: colors.amber[200],
-          DEFAULT: colors.amber[500],
-          dark: colors.amber[700]
+          lighter: "rgb(var(--orange-lighter) / <alpha-value>)",
+          DEFAULT: "rgb(var(--orange-default) / <alpha-value>)",
+          dark: "rgb(var(--orange-dark) / <alpha-value>)"
         },
 
         /*
          * info colors
          */
         blue: {
-          lighter: colors.sky[200],
-          DEFAULT: colors.sky[500],
-          dark: colors.sky[700]
+          lighter: "rgb(var(--blue-lighter) / <alpha-value>)",
+          DEFAULT: "rgb(var(--blue-default) / <alpha-value>)",
+          dark: "rgb(var(--blue-dark) / <alpha-value>)"
         },
 
         /*
          * success colors
          */
         green: {
-          lighter: colors.emerald[200],
-          DEFAULT: colors.emerald[500],
-          dark: colors.emerald[700]
+          lighter: "rgb(var(--green-lighter) / <alpha-value>)",
+          DEFAULT: "rgb(var(--green-default) / <alpha-value>)",
+          dark: "rgb(var(--green-dark) / <alpha-value>)"
         }
       }
     }

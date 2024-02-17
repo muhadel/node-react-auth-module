@@ -1,14 +1,18 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import { PiArrowLineRight, PiUserCirclePlus } from "react-icons/pi";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import cn from "@/utils/class-names";
+import { Switch } from "@/components/ui/switch";
 import { routes } from "@/utils/config/routes";
 import { siteConfig } from "@/utils/config/site.config";
 import useAuth from "@/hooks/use-auth";
 import { useAppDispatch } from "@/hooks/use-app-dispatch";
+import { useTheme } from "@/hooks/use-theme";
 import { signOut } from "@/redux/auth/auth-actions";
+import { GrSun, GrMoon } from "react-icons/gr";
+import { MODE_OPTIONS } from "@/utils/config/enums";
 
 function NavLink({
   href,
@@ -17,6 +21,7 @@ function NavLink({
   href: string;
 }>) {
   const pathname = useLocation().pathname;
+  const { theme } = useTheme();
 
   function isActive(href: string) {
     if (pathname === href) {
@@ -28,10 +33,9 @@ function NavLink({
   return (
     <Link
       to={href}
-      className={cn(
-        "inline-flex items-center gap-x-1 rounded-3xl p-2 py-1 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 md:px-4 md:py-2.5 [&>svg]:w-4 [&>svg]:text-gray-500",
-        isActive(href) ? "bg-gray-100 text-gray-900 [&>svg]:text-gray-900" : " "
-      )}
+      className={`inline-flex items-center gap-x-1 rounded-3xl p-2 py-1 text-sm font-medium transition-colors md:px-4 md:py-2.5 ${theme === MODE_OPTIONS.LIGHT ? "text-gray-700" : "text-white"} ${
+        isActive(href) ? (theme === MODE_OPTIONS.LIGHT ? "bg-gray-200 text-gray-900" : "bg-gray-800 text-white") : ""
+      }`}
     >
       {children}
     </Link>
@@ -43,12 +47,20 @@ export default function Header() {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { setTheme, theme } = useTheme();
+  const [isDarkModeChecked, setIsDarkModeChecked] = useState(theme === MODE_OPTIONS.DARK);
 
   const handleSignOut = () => {
     dispatch(signOut());
     navigate(routes.home);
   };
 
+  const handleSwitchChange = () => {
+    const newTheme = theme === MODE_OPTIONS.LIGHT ? MODE_OPTIONS.DARK : MODE_OPTIONS.LIGHT;
+
+    setTheme(newTheme);
+    setIsDarkModeChecked(!isDarkModeChecked);
+  };
   return (
     <header className="flex items-center justify-between p-4 lg:px-16 lg:py-6 2xl:px-24">
       <Link to={"/"}>
@@ -59,7 +71,7 @@ export default function Header() {
         {!isAuthenticated ? (
           <>
             <NavLink href={routes.signIn}>
-              <PiArrowLineRight className="h-4 w-4" />
+              <PiArrowLineRight className="h-4 w-4 " />
               <span>Login</span>
             </NavLink>
             <NavLink href={routes.signUp}>
@@ -75,12 +87,13 @@ export default function Header() {
               </div>
             )}
 
-            <Button rounded="pill" variant="flat" className="bg-[#F3F4F6]" onClick={handleSignOut}>
+            <Button rounded="pill" variant="flat" className={theme === MODE_OPTIONS.LIGHT ? "bg-gray-200 text-gray-900" : "bg-gray-800 text-white"} onClick={handleSignOut}>
               <AiOutlineLogout className="h-4 w-4 mr-2" />
               <span>Log out</span>
             </Button>
           </>
         )}
+        <Switch size="lg" label="" offIcon={<GrSun className="h-3.5 w-3.5" />} onIcon={<GrMoon className="h-3 w-3" />} variant="outline" onChange={handleSwitchChange} checked={isDarkModeChecked} />
       </div>
     </header>
   );
