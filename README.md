@@ -11,7 +11,11 @@ This repository contains a full-stack authentication module with the following t
 ## Quick Demo
 
 
-https://github.com/muhadel/node-react-auth-module/assets/32979588/c30d50fc-d6dd-49ba-a01e-47f9843319b5
+<!-- https://github.com/muhadel/node-react-auth-module/assets/32979588/c30d50fc-d6dd-49ba-a01e-47f9843319b5 -->
+
+
+
+https://github.com/muhadel/node-react-auth-module/assets/32979588/377d2bfc-125c-453b-81f5-bcd6013387c4
 
 
 
