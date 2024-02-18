@@ -1,7 +1,8 @@
-import { Outlet } from "react-router-dom";
-import Footer from "../footer";
-import Header from "../header";
 import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
+import ProgressBar from "@/components/progress-bar";
 
 export default function LayoutWrapper({ children }: { children?: React.ReactNode }) {
   return (
@@ -12,6 +13,7 @@ export default function LayoutWrapper({ children }: { children?: React.ReactNode
         </>
       }
     >
+      <ProgressBar />
       <Header />
       {children}
 
