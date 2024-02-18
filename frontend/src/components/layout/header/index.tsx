@@ -1,17 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AiOutlineLogout } from "react-icons/ai";
 import { PiArrowLineRight, PiUserCirclePlus } from "react-icons/pi";
-import { Link, useLocation } from "react-router-dom";
+import { PiSunBold, PiMoonBold } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
 import { routes } from "@/utils/config/routes";
 import { siteConfig } from "@/utils/config/site.config";
 import useAuth from "@/hooks/use-auth";
 import { useAppDispatch } from "@/hooks/use-app-dispatch";
 import { useTheme } from "@/hooks/use-theme";
 import { signOut } from "@/redux/auth/auth-actions";
-import { GrSun, GrMoon } from "react-icons/gr";
 import { MODE_OPTIONS } from "@/utils/config/enums";
 
 function NavLink({
@@ -61,6 +60,7 @@ export default function Header() {
     setTheme(newTheme);
     setIsDarkModeChecked(!isDarkModeChecked);
   };
+
   return (
     <header className="flex items-center justify-between p-4 lg:px-16 lg:py-6 2xl:px-24">
       <Link to={"/"}>
@@ -93,7 +93,9 @@ export default function Header() {
             </Button>
           </>
         )}
-        <Switch size="lg" label="" offIcon={<GrSun className="h-3.5 w-3.5" />} onIcon={<GrMoon className="h-3 w-3" />} variant="outline" onChange={handleSwitchChange} checked={isDarkModeChecked} />
+        <Button rounded="pill" variant="outline" onClick={handleSwitchChange} title={`Switch between dark and light mode (currently ${theme} mode)`}>
+          {isDarkModeChecked ? <PiMoonBold className="h-3.5 w-3.5" /> : <PiSunBold className="h-3.5 w-3.5" />}
+        </Button>
       </div>
     </header>
   );
