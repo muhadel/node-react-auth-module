@@ -12,11 +12,12 @@ This repository contains a full-stack authentication module with the following t
 
 
 <!-- https://github.com/muhadel/node-react-auth-module/assets/32979588/c30d50fc-d6dd-49ba-a01e-47f9843319b5 -->
+<!-- https://github.com/muhadel/node-react-auth-module/assets/32979588/377d2bfc-125c-453b-81f5-bcd6013387c4 -->
 
 
 
-https://github.com/muhadel/node-react-auth-module/assets/32979588/377d2bfc-125c-453b-81f5-bcd6013387c4
 
+https://github.com/muhadel/node-react-auth-module/assets/32979588/a4582c70-236f-42c3-994e-55ae944432cf
 
 
 
