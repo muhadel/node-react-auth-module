@@ -1,4 +1,4 @@
 export const dotenv = {
-  backendUrl: import.meta.env.VITE_BACKEND_URL,
-  accessTokenCookieName: import.meta.env.VITE_ACCESS_TOKEN_COOKIE_NAME
+  backendUrl: import.meta.env.APP_BACKEND_URL,
+  accessTokenCookieName: import.meta.env.APP_ACCESS_TOKEN_COOKIE_NAME
 };
