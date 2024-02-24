@@ -3,7 +3,7 @@ import { MODE_OPTIONS } from "@/utils/config/enums";
 
 export function ThemeProvider({ children }: React.PropsWithChildren<{}>) {
   return (
-    <NextThemeProvider enableSystem defaultTheme={MODE_OPTIONS.SYSTEM} disableTransitionOnChange>
+    <NextThemeProvider defaultTheme={MODE_OPTIONS.LIGHT} disableTransitionOnChange>
       {children}
     </NextThemeProvider>
   );
