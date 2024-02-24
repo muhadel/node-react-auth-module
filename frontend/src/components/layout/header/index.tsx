@@ -64,7 +64,7 @@ export default function Header() {
   return (
     <header className="flex items-center justify-between p-4 lg:px-16 lg:py-6 2xl:px-24">
       <Link to={"/"}>
-        <img src={siteConfig.logo} alt={siteConfig.title} className="dark:invert" />
+        <img src={siteConfig.logo} alt={siteConfig.title} />
       </Link>
 
       <div className="flex items-center space-x-2 md:space-x-4">

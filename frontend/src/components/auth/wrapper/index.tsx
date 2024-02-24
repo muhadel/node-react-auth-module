@@ -40,7 +40,7 @@ export default function AuthWrapper({
         <div className={cn("mx-auto w-full max-w-md py-12 md:max-w-lg lg:max-w-xl 2xl:pb-8 2xl:pt-2", className)}>
           <div className="flex flex-col items-center">
             <Link to={"/"} className="mb-7 inline-block max-w-[64px] lg:mb-9">
-              <img src={siteConfig.icon} alt={siteConfig.title} className="dark:invert" />
+              <img src={siteConfig.icon} alt={siteConfig.title} />
             </Link>
             <Title as="h2" className="mb-7 text-center text-[28px] font-bold leading-snug md:text-3xl md:!leading-normal lg:mb-10 lg:text-4xl">
               {title}
